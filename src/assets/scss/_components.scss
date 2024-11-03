@@ -1,0 +1,29 @@
+@layer components {
+    .btn {
+        @apply inline-flex items-center ease-linear justify-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold text-neutral1 sm:px-4 sm:py-2 md:gap-3 xxl:px-6 xxl:py-2.5 outline outline-1 outline-offset-[3px] hover:outline-none transition-all duration-300;
+    }
+
+    .btn-primary {
+        @apply btn border-primary bg-primary outline-primary;
+    }
+
+    .btn-accent6 {
+        @apply btn border-accent6 bg-accent6 outline-primary;
+    }
+
+    .btn-white {
+        @apply btn border-neutral1 bg-neutral1 outline-neutral1 text-primary;
+    }
+
+    .btn-black {
+        @apply btn border-accent2 bg-accent2 outline-accent2 text-neutral1;
+    }
+
+    .btn-secondary {
+        @apply btn border-secondary bg-secondary;
+    }
+
+    .tag {
+        @apply py-2 px-4 rounded-lg bg-accent6 border border-accent4 inline-flex hover: bg-primary duration-300;
+    }
+}
