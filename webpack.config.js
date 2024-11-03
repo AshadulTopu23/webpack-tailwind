@@ -1,3 +1,5 @@
+
+'use strict'
 const path = require('path')
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -34,22 +36,13 @@ function generateHtmlPlugins(rootDir) {
 
 const htmlFiles = generateHtmlPlugins(rootDirectory);
 
-
-
-
-
-
-
-
-// // partial files
-// const partialFiles = ['footer', 'header', 'loader'].map((partial) => {
-//     return {
-//         tag: `<include-${partial} />`,
-//         content: fs.readFileSync(path.resolve(__dirname, `src/partials/${partial}.html`))
-//     }
-// })
-
-
+// partial files
+const partialFiles = ['head', 'header', 'loader', 'back-to-top', 'footer',].map((partial) => {
+    return {
+        tag: `<include-${partial} />`,
+        content: fs.readFileSync(path.resolve(__dirname, `src/partials/${partial}.html`))
+    }
+})
 
 module.exports = {
     mode: 'development',
@@ -60,12 +53,12 @@ module.exports = {
         clean: true,
     },
     devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'dist'),
-        },
+        static: path.resolve(__dirname, 'dist'),
         port: 3000,
         // open: true,
         hot: true,
+        liveReload: true,
+        watchFiles: ['src/**/*'],
         compress: true,
         historyApiFallback: true,
     },
@@ -80,7 +73,6 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: "asset/resource",
             },
-
             {
                 test: /\.(sc|sa|c|)ss$/i,
                 use: [
@@ -131,6 +123,16 @@ module.exports = {
                     filename: 'assets/images/[name][ext]',
                 },
             },
+            {
+                test: /\.(?:js|mjs|cjs)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+            },
         ],
     },
 
@@ -142,6 +144,6 @@ module.exports = {
             patterns: [{ from: "src/assets/images", to: "assets/images" }],
         }),
         ...htmlFiles,
-        // new HtmlWebpackSimpleIncludePlugin([...partialFiles])
+        new HtmlWebpackSimpleIncludePlugin([...partialFiles])
     ],
 }

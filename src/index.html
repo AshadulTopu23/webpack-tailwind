@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Tailwind Template</title>
-</head>
+<!-- head -->
+<include-head />
 
 <body>
+    <!-- preloader -->
+    <include-loader />
+    <!-- back to top -->
+    <include-back-to-top />
+    <!-- include header -->
+    <include-header />
 
-    <h1 class="text-3xl font-bold underline text-red-800">Webpack Tailwind</h1>
+    <!-- main start -->
+    <main class="pt-lg-6">
+        <h1 class="text-3xl font-bold underline text-red-800">Webpack Tailwind</h1>
+        <h3 class="text-3xl font-bold underline text-green-800">This is the main content</h3>
+        <h2 class="text-3xl font-bold underline text-blue-800">Hello World</h2>
+    </main>
+    <!-- main end -->
 
-    <script src="index.js"></script>
+    <!-- footer section -->
+    <include-footer />
+
 </body>
 
 </html>
